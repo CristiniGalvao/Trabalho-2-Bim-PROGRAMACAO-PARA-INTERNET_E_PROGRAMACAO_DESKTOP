@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesquisa Vendas</title>
+    <style>
+        body {
+            font-family: "Arial Black", sans-serif;
+            margin: 0;
+            padding: 18px;
+            background-color: #ccc;
+        }
+        .window {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #ece6e6;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #38933b;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Pesquisar Vendas</h1>
+<form action="/vendas" method="get">
+    <label for="dataInicial">Data Inicial:</label>
+    <input type="date" id="dataInicial" name="dataInicial">
+    <label for="dataFinal">Data Final:</label>
+    <input type="date" id="dataFinal" name="dataFinal">
+    <button type="submit">Pesquisar</button>
+</form>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Data</th>
+        <th>Total</th>
+        <th>Cliente</th>
+    </tr>
+    <tr th:each="venda : ${vendas}">
+        <td th:text="${venda.id}"></td>
+        <td th:text="${venda.data}"></td>
+        <td th:text="${venda.total}"></td>
+        <td th:text="${venda.cliente.nome}"></td>
+
+    </tr>
+</table>
+</body>
+</html>
