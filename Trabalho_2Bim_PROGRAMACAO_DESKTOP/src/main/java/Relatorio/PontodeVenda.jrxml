@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PontodeVenda" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f628d237-cd27-4c6d-bad2-692b8ad3acde">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+    venda.id AS id_venda,
+    venda.data AS data_venda,
+    venda.observacoes AS observacoes_venda,
+    item.produto_nome AS nome_produto,
+    item.produto_descricao AS descricao_produto,
+    item.quantidade AS quantidade_vendida,
+    item.preco_unitario AS preco_unitario,
+    item.quantidade * item.preco_unitario AS total_item
+FROM
+    venda
+JOIN
+    item_venda item ON venda.id = item.id_venda
+WHERE
+    venda.id = ?;]]>
+	</queryString>
+	<field name="id_venda" class="java.lang.Integer"/>
+	<field name="data_venda" class="java.sql.Timestamp"/>
+	<field name="observacoes_venda" class="java.lang.String"/>
+	<field name="total_venda" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="560" height="79" uuid="3286b31f-7a51-4459-a8b0-674975372279">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="Dialog" size="25" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório geral de vendas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="47" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="-11" y="10" width="100" height="30" uuid="72f0384e-ab83-4563-8d6d-34ca8259cf8b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Id_venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="10" width="100" height="30" uuid="3c2016b2-ef59-4556-b69f-c99695d17e58"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[data_venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="260" y="10" width="100" height="30" uuid="45342c9b-bb9f-4b89-aa8b-99eeabe03395"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[observacoes_venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="10" width="100" height="30" uuid="ceb160c9-5f42-4ac8-8abe-15d9bba33ce7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[total_vendas]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="-7" y="10" width="100" height="30" uuid="175e222d-ac4e-48b1-8f91-d4c9bd3c0bf8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_venda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="128" y="6" width="100" height="44" uuid="3521f17a-c9ad-4903-992d-ed94e9f1c526"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_venda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="0" width="100" height="50" uuid="f244b212-b7d9-4459-a01f-f0fca5b8f21e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacoes_venda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="9" width="100" height="38" uuid="87c73ea6-2c43-4ad6-b9fa-381ba678634a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Dialog" size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_venda}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
